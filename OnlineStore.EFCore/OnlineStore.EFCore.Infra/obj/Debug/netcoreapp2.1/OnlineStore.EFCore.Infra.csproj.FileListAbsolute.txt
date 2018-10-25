@@ -1,0 +1,16 @@
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.csprojAssemblyReference.cache
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.csproj.CoreCompileInputs.cache
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.AssemblyInfoInputs.cache
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.AssemblyInfo.cs
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.deps.json
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.runtimeconfig.json
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.runtimeconfig.dev.json
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.dll
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.pdb
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.dll
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.dll
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.pdb
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.pdb
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.csproj.CopyComplete
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.dll
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Infra\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Infra.pdb

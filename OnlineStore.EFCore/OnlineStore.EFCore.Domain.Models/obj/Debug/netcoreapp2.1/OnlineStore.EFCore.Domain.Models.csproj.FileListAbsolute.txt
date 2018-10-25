@@ -1,0 +1,8 @@
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.deps.json
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.dll
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\bin\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.pdb
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.csproj.CoreCompileInputs.cache
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.AssemblyInfoInputs.cache
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.AssemblyInfo.cs
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.dll
+C:\Training\OnlineStore.EFCore\OnlineStore.EFCore.Domain.Models\obj\Debug\netcoreapp2.1\OnlineStore.EFCore.Domain.Models.pdb

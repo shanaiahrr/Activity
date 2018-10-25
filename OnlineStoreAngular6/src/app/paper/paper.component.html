@@ -1,0 +1,101 @@
+
+<button mat-mini-fab (click)="addPaper()"><mat-icon>add</mat-icon></button>
+&nbsp; ADD PAPER
+
+<div style="float:right; margin:0% -1%;">
+<mat-form-field>
+  <label>Search Paper Type</label>
+    <input matInput (keyup)="applyFilter($event.target.value)" style="color:black;">      
+  </mat-form-field>
+</div>
+
+<div>    
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="table-layout: auto; width:100%;">
+
+<!-- Button Column -->
+<ng-container matColumnDef="button">
+  <th mat-header-cell *matHeaderCellDef> </th>
+  <td mat-cell *matCellDef="let Paper"> 
+      <button mat-mini-fab (click)="editPaper(Paper)"><mat-icon>edit</mat-icon></button> 
+      <button mat-mini-fab (click)="deletePaper(Paper)"><mat-icon>delete</mat-icon></button> 
+    </td>
+</ng-container>     
+
+<!-- Code Column -->
+<ng-container matColumnDef="paperID">
+  <th mat-header-cell *matHeaderCellDef> ID </th>
+  <td mat-cell *matCellDef="let Paper"> {{Paper.paperID }} </td>
+</ng-container>
+
+<!-- TypeOfPaper Column -->
+<ng-container matColumnDef="typeOfPaper">
+  <th mat-header-cell *matHeaderCellDef> Type Of Paper </th>
+  <td mat-cell *matCellDef="let Paper"> {{ Paper.typeOfPaper }} </td>
+</ng-container>
+
+<!-- Price Column -->
+<ng-container matColumnDef="price">
+  <th mat-header-cell *matHeaderCellDef> Price </th>
+  <td mat-cell *matCellDef="let Paper"> {{ Paper.price }} </td>
+</ng-container>
+
+<!-- Is Active Column -->
+<ng-container matColumnDef="isActive">
+  <th mat-header-cell *matHeaderCellDef> Is Active </th>
+  <td mat-cell *matCellDef="let Paper"> {{ Paper.isActive }} </td>
+</ng-container>
+
+<!-- DateCreated Column -->
+<ng-container matColumnDef="dateCreated">
+  <th mat-header-cell *matHeaderCellDef> Date Created </th>
+  <td mat-cell *matCellDef="let Paper"> {{ Paper.dateCreated }} </td>
+</ng-container>
+
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 30]" showFirstLastButtons></mat-paginator>
+
+</div>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="selectPaper">
+<mat-step>
+<form [formGroup]="paperFormGroup">
+ 
+  <mat-form-field>
+    <input type="text" formControlName="typeOfPaper" [(ngModel)]="selectPaper.typeOfPaper" placeholder="Type Of Paper" matInput>
+    <!-- <mat-error *ngIf="firstNameFormControl.hasError('required')"> This field is <strong>required</strong>
+      </mat-error> -->
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" min="0" oninput="validity.valid || (value='');" formControlName="price" [(ngModel)]="selectPaper.price" placeholder="Price" matInput>
+  </mat-form-field>
+     <mat-form-field>
+    <input matInput disabled [matDatepicker]="dateCreated" formControlName="dateCreated" [(ngModel)]="selectPaper.dateCreated" placeholder="Date Created"
+      readonly [min]="minDate">
+    <mat-datepicker-toggle matSuffix [for]="dateCreated"></mat-datepicker-toggle>
+    <mat-datepicker #dateCreated disabled="false"></mat-datepicker>
+  </mat-form-field>
+  <div align="center">
+    <label>Is Active</label>
+     <mat-radio-group class="isActive" [(ngModel)]="selectPaper.isActive" formControlName="isActive">
+       <mat-radio-button class="isActive" [value]="true">True</mat-radio-button>
+       <mat-radio-button class="isActive" [value]="false">False</mat-radio-button>
+     </mat-radio-group>
+   </div>
+
+  
+
+  <div class="centerButtons">
+   
+    <button mat-raised-button (click)="cancelPaper()">Cancel</button>
+    <button mat-raised-button (click)="savePaper()">Save</button>
+    <button mat-raised-button (click)="okDelete()">Delete</button>
+  </div>
+
+</form>
+</mat-step>
+</mat-horizontal-stepper>

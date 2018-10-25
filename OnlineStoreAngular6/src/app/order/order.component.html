@@ -1,0 +1,112 @@
+<p-dataTable #dt [value]="orderList">
+    <p-header>
+        <div class="addHeader">
+            <button type="button" pButton icon="fa fa-plus" (click)="addOrder()"></button> 
+            &nbsp; Add Order
+        </div>
+        <div class="searchHeader">
+            <input pInputText type="text" [(ngModel)]="searchOrderName" placeholder="Search Order Name"  />
+            <button pButton type="button" icon="fa fa-plus" (click)="searchOrder()"></button>           
+        </div>
+    </p-header>
+    <p-column>
+        <ng-template pTemplate type="body" let-Order="rowData">
+                <button type="button" pButton icon="fa fa-pencil" (click)="editOrder(Order)"></button>
+                <button type="button" pButton icon="fa fa-trash" (click)="deleteOrder(Order)"></button>
+        </ng-template>
+    </p-column>
+    <p-column field="orderID" header="Order ID"></p-column>
+    <!-- <p-column field="description" header="Description"></p-column> -->
+    <p-column field="orderDate" header="Order Date"></p-column>
+    <!-- <p-column field="orderName" header="Order Name"></p-column> -->
+    <p-column field="requiredDate" header="Required Date"></p-column>
+    <p-column field="shippedDate" header="Shipped Date"></p-column>
+    <p-column field="customerName" header="Customer Name"></p-column>
+    <p-column field="employeeName" header="Employee Name"></p-column>
+    <p-column field="shipName" header="Shipper Name"></p-column>
+    <p-column field="freight" header="Freight"></p-column>
+    <p-column field="shipName" header="Ship Name"></p-column>
+    <p-column field="shippedViaName" header="ShippedVia"></p-column>
+    <p-column header="Shipping Address">
+      <ng-template pTemplate type="body" let-Order="rowData">
+        {{ Order.shipAddress + " " + Order.shipCity + " " + Order.shipRegion + " " + Order.shipPostalCode + " " + Order.shipCountry}}
+      </ng-template>
+    </p-column>
+</p-dataTable>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="selectOrder">
+  <mat-step>
+    <form [formGroup]="orderFormGroup">
+      <ng-template matStepLabel>Fill out your basic information</ng-template>
+      <mat-form-field>
+        <input type="text" formControlName="shipName" [(ngModel)]="selectOrder.shipName" placeholder="Enter Ship Name" matInput>
+      </mat-form-field>
+      <mat-form-field>
+          <input type="text" formControlName="shipAddress" [(ngModel)]="selectOrder.shipAddress" placeholder="Enter Ship Address" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" formControlName="shipCity" [(ngModel)]="selectOrder.shipCity" placeholder="Enter Ship City" matInput>
+        </mat-form-field>
+        <mat-form-field>
+        <input type="text" formControlName="shipRegion" [(ngModel)]="selectOrder.shipRegion" placeholder="Enter Ship Region" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" formControlName="shipPostalCode" [(ngModel)]="selectOrder.shipPostalCode" placeholder="Enter Ship Postal Code" matInput>
+          </mat-form-field>
+        <mat-form-field>
+        <input type="text" formControlName="shipCountry" [(ngModel)]="selectOrder.shipCountry" placeholder="Enter Ship Country" matInput>
+        </mat-form-field>
+        <mat-form-field>
+        <input type="number" formControlName="freight" [(ngModel)]="selectOrder.freight" placeholder="Enter Freight" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="orderDate" placeholder="Enter Order Date" [(ngModel)]="selectOrder.orderDate" formControlName="orderDate">
+            <mat-datepicker-toggle matSuffix [for]="orderDate"></mat-datepicker-toggle>
+            <mat-datepicker #orderDate></mat-datepicker>
+          </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="requiredDate" placeholder="Enter Required Date" [(ngModel)]="selectOrder.requiredDate" formControlName="requiredDate">
+            <mat-datepicker-toggle matSuffix [for]="requiredDate"></mat-datepicker-toggle>
+            <mat-datepicker #requiredDate></mat-datepicker>
+          </mat-form-field>  
+        <mat-form-field>
+            <input matInput [matDatepicker]="shippedDate" placeholder="Enter Shipped Date" [(ngModel)]="selectOrder.shippedDate" formControlName="shippedDate">
+            <mat-datepicker-toggle matSuffix [for]="shippedDate"></mat-datepicker-toggle>
+            <mat-datepicker #shippedDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Select Customer" formControlName="customerName" [(ngModel)]="selectCustomer">
+              <mat-option *ngFor="let customer of customerList" [value]="customer.customerID">
+                {{customer.companyName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Select Employee" formControlName="firstName" [(ngModel)]="selectEmployee">
+              <mat-option *ngFor="let employee of employeeList" [value]="employee.employeeID">
+                {{employee.empFirstName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>    
+        <mat-form-field>
+            <mat-select placeholder="Select Shipper" formControlName="shippedViaName" [(ngModel)]="selectShipper">
+              <mat-option *ngFor="let shipper of shipperList" [value]="shipper.shipperID">
+                {{shipper.companyName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="centerButtons">
+            <button mat-raised-button matStepperNext>Next</button>
+            <button mat-raised-button (click)="okDelete()">Delete</button>
+            <button mat-raised-button (click)="saveOrder()">Save</button>
+            <button mat-raised-button (click)="cancelOrder()">Cancel</button>
+          </div>
+  
+    </form>
+  </mat-step>
+  <mat-step>
+<app-order-detail [orderDetailFormGroup]="orderDetailFormGroup" [orderID]=selectOrder.orderID (saveEvent)="saveOrder($event)">
+
+</app-order-detail>
+  </mat-step>
+</mat-horizontal-stepper>

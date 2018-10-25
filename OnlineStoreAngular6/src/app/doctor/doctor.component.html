@@ -1,0 +1,73 @@
+<p-dataTable #dt [value]="doctorList" [paginator]="true" [rows]="5" [pageLinks]="5" 
+[responsive]="true" [totalRecords]="totalRecords" (onLazyLoad)="paginate($event)" [lazy]="true">
+    <p-header>
+        <div class="addHeader">
+            <button type="button" pButton icon="fa fa-plus" (click)="addDoctor()"></button> 
+            &nbsp; Add Doctor
+        </div>
+        <div class="searchHeader">
+            <input pInputText type="text" [(ngModel)]="searchDrLastName" placeholder="Search Doctor by Last Name"  />
+            <button pButton type="button" icon="fa fa-search" (click)="searchDoctor()"></button>           
+        </div>
+    </p-header>
+    <p-column>
+        <ng-template pTemplate type="body" let-Doctor="rowData">
+                <button type="button" pButton icon="fa fa-pencil" (click)="editDoctor(Doctor)"></button>
+                <button type="button" pButton icon="fa fa-trash" (click)="deleteDoctor(Doctor)"></button>
+        </ng-template>
+    </p-column>
+    <p-column field="doctorID" header="Doctor ID"></p-column>
+    <p-column field="drFirstName" header="Doctor First Name"></p-column>
+    <p-column field="drMiddleName" header="Doctor Middle Name"></p-column>
+    <p-column field="drLastName" header="Doctor Last Name"></p-column>
+    <p-column field="phone" header="Phone"></p-column>
+    <p-column field="specialization" header="Specialization"></p-column>
+    <p-column field="licenseNo" header="License No"></p-column>
+    <p-column field="worksAt" header="Works At"></p-column>
+    <p-column field="physicianType" header="Physician Type"></p-column>
+    <p-column field="isAvailable" header="is Available?"></p-column>
+</p-dataTable>
+
+<form [formGroup]="doctorForm">
+    <p-dialog header="Doctor" [(visible)]="selectDoctor" *ngIf="selectDoctor">
+       <div class="ui-g-12 ui-md-12 ui-fluid">
+            
+            <label>Doctor's First Name</label>
+            <input pInputText id ="input-drFirstName" formControlName="drFirstName" placeholder="Enter Doctor's First Name" [(ngModel)] = "selectDoctor.drFirstName"> 
+            <br />
+            <label>Doctor's Middle Name</label>
+            <input pInputText id ="input-drMiddleName" formControlName="drMiddleName" placeholder="Enter Doctor's Middle Name" [(ngModel)] = "selectDoctor.drMiddleName"> 
+            <br />
+            <label>Doctor's Last Name</label>
+            <input pInputText id ="input-drLastName" formControlName="drLastName" placeholder="Enter Doctor's Last Name" [(ngModel)] = "selectDoctor.drLastName"> 
+            <br />
+            <label>Phone</label>
+            <input pInputText id ="input-phone" formControlName="phone" placeholder="Enter Phone Number" [(ngModel)] = "selectDoctor.phone"> 
+            <br />
+            <label>Specialization</label>
+            <input pInputText id ="input-specialization" formControlName="specialization" placeholder="Enter Specialization" [(ngModel)] = "selectDoctor.specialization"> 
+            <br />
+            <label>License Number</label>
+            <input pInputText id ="input-licenseNo" formControlName="licenseNo" placeholder="Enter License Number" [(ngModel)] = "selectDoctor.licenseNo"> 
+            <br />    
+            <label>Works At</label> 
+            <input pInputText id ="input-worksAt" formControlName="worksAt" placeholder="Works At" [(ngModel)] = "selectDoctor.worksAt"> 
+            <br />
+            <label>Physician Type</label>
+            <input pInputText id ="input-physicianType" formControlName="physicianType" placeholder="Physician Type" [(ngModel)] = "selectDoctor.physicianType"> 
+            <br />
+            <label>Is Available?</label><br>
+            <p-radioButton value="True" label="True" formControlName="isAvailable" 
+                [(ngModel)]="selectDoctor.isAvailable" inputId="input-isAvailable"></p-radioButton><br />
+            <p-radioButton value="False" label="False" formControlName="isAvailable" 
+                [(ngModel)]="selectDoctor.isAvailable" inputId="input-isAvailable"></p-radioButton>
+            <br />
+            <button pButton type="button" icon="fa fa-trash" label="Delete" (click)="okDelete()" *ngIf="isDeleteDoctor==true"></button>
+            <button pButton type="button" icon="fa fa-file" label="Save" (click)="saveDoctor()" *ngIf="isDeleteDoctor==false" [disabled]="!doctorForm.valid"></button>
+            <button pButton type="button" icon="fa fa-ban" label="Cancel" (click)="cancelDoctor()"></button>
+       </div>
+       
+    </p-dialog>
+    
+      
+</form>

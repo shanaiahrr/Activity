@@ -1,0 +1,41 @@
+<p-dataTable #dt [value]="shipperList" [paginator]="true" [rows]="5" [pageLinks]="5" 
+[responsive]="true" [totalRecords]="totalRecords" (onLazyLoad)="paginate($event)" [lazy]="true">
+    <p-header>
+        <div class="addHeader">
+            <button type="button" pButton icon="fa fa-plus" (click)="addShipper()"></button> 
+            &nbsp; Add Shipper
+        </div>
+        <div class="searchHeader">
+            <input pInputText type="text" [(ngModel)]="searchCompanyName" placeholder="Search Company Name"  />
+            <button pButton type="button" icon="fa fa-plus" (click)="searchShipper()"></button>           
+        </div>
+    </p-header>
+  <p-column>
+      <ng-template pTemplate type="body" let-Shipper="rowData">
+              <button type="button" pButton icon="fa fa-pencil" (click)="editShipper(Shipper)"></button>
+              <button type="button" pButton icon="fa fa-trash" (click)="deleteShipper(Shipper)"></button>
+      </ng-template>
+  </p-column>
+  <p-column field="shipperID" header="Shipper ID"></p-column>
+  <p-column field="companyName" header="Company Name"></p-column>
+  <p-column field="phone" header="Phone No."></p-column>
+</p-dataTable>
+
+<form [formGroup]="shipperForm">
+  <p-dialog header="Shipper" [(visible)]="selectShipper" *ngIf="selectShipper">
+     <div class="ui-g-12 ui-md-12 ui-fluid">
+          <label>Company Name</label>
+          <input pInputText id ="input-companyName" formControlName="companyName" placeholder="Enter Company Name" [(ngModel)] = "selectShipper.companyName"> 
+          <br />
+          <label>Phone</label>
+          <input pInputText id ="input-phone" formControlName="phone" placeholder="Enter Phone No." [(ngModel)] = "selectShipper.phone"> 
+          <br />
+
+          <button pButton type="button" icon="fa fa-trash" label="Delete" (click)="okDelete()" *ngIf="isDeleteShipper==true"></button>
+          <button pButton type="button" icon="fa fa-file" label="Save" (click)="saveShipper()" *ngIf="isDeleteShipper==false" [disabled]="!shipperForm.valid"></button>
+          <button pButton type="button" icon="fa fa-ban" label="Cancel" (click)="cancelShipper()"></button>
+     </div>
+  </p-dialog>
+  
+    
+</form>

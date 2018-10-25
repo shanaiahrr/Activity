@@ -1,0 +1,94 @@
+<p-dataTable #dt [value]="employeeList" [paginator]="true" [rows]="5" [pageLinks]="5" 
+[responsive]="true" [totalRecords]="totalRecords" (onLazyLoad)="paginate($event)" [lazy]="true">
+    <p-header>
+        <div class="addHeader">
+            <button type="button" pButton icon="fa fa-plus" (click)="addEmployee()"></button> 
+            &nbsp; Add Employee
+        </div>
+        <div class="searchHeader">
+            <input pInputText type="text" [(ngModel)]="searchEmpLastName" placeholder="Search Employee Last Name"  />
+            <button pButton type="button" icon="fa fa-plus" (click)="searchEmployee()"></button>           
+        </div>
+    </p-header>
+  <p-column>
+      <ng-template pTemplate type="body" let-Employee="rowData">
+              <button type="button" pButton icon="fa fa-pencil" (click)="editEmployee(Employee)"></button>
+              <button type="button" pButton icon="fa fa-trash" (click)="deleteEmployee(Employee)"></button>
+      </ng-template>
+  </p-column>
+  <p-column field="employeeID" header="Employee ID"></p-column>
+  <p-column field="empFirstName" header="Employee First Name"></p-column>
+  <p-column field="empLastName" header="Employee Last Name"></p-column>
+  <p-column field="title" header="Title"></p-column>
+  <p-column field="titleofCourtesy" header="Title of Courtesy"></p-column>
+  <p-column field="birthDate" header="Birthdate"></p-column>
+  <p-column field="hireDate" header="Hire Date"></p-column>
+  <p-column field="address" header="Address"></p-column>
+  <p-column field="city" header="City"></p-column>
+  <p-column field="region" header="Region"></p-column>
+  <p-column field="postalCode" header="Postal Code"></p-column>
+  <p-column field="country" header="Country"></p-column>
+  <p-column field="homePhone" header="Phone No."></p-column>
+  <p-column field="extension" header="Extension"></p-column>
+  <p-column field="notes" header="Notes"></p-column>
+  <p-column field="reportsTo" header="Reports To"></p-column>
+</p-dataTable>
+
+<form [formGroup]="employeeForm">
+  <p-dialog header="Employee" [(visible)]="selectEmployee" *ngIf="selectEmployee">
+     <div class="ui-g-12 ui-md-12 ui-fluid">
+       
+          <label>First Name</label>
+          <input pInputText id ="input-empFirstName" formControlName="empFirstName" placeholder="Enter Employee First Name" [(ngModel)] = "selectEmployee.empFirstName"> 
+          <br />
+          <label>Last Name</label>
+          <input pInputText id ="input-empLastName" formControlName="empLastName" placeholder="Enter Employee Last Name" [(ngModel)] = "selectEmployee.empLastName"> 
+          <br />
+          <label>Title</label>
+          <input pInputText id ="input-title" formControlName="title" placeholder="Enter Title" [(ngModel)] = "selectEmployee.title"> 
+          <br />
+          <label>Title of Courtesy</label>
+          <input pInputText id ="input-titleOfCourtesy" formControlName="titleOfCourtesy" placeholder="Enter Title of Courtesy" [(ngModel)] = "selectEmployee.titleofCourtesy"> 
+          <br />
+          <label for="input-birthDate">Birthdate</label>
+          <p-calendar  formControlName="birthDate"
+          placeholder="Enter Birth Date" [(ngModel)]= "birthDate" readonlyInput="true"></p-calendar> 
+          <label for="input-hireDate">Hire Date</label>
+          <p-calendar formControlName="hireDate"
+          placeholder="Enter Hire Date" [(ngModel)]= "hireDate" readonlyInput="true"></p-calendar>
+          <label>Address</label>
+          <textarea pInputTextArea id="input-address" [rows]=5 placeholder="Enter Address" style="resize:none" formControlName="address"[(ngModel)]="selectEmployee.address"></textarea>
+          <br />
+          <label>City</label>
+          <input pInputText id ="input-city" formControlName="city" placeholder="Enter City" [(ngModel)] = "selectEmployee.city"> 
+          <br />
+          <label>Region</label>
+          <input pInputText id ="input-region" formControlName="region" placeholder="Enter Region" [(ngModel)] = "selectEmployee.region"> 
+          <br />
+          <label>Postal Code</label>
+          <input pInputText id ="input-pCode" formControlName="postalCode" placeholder="Enter Postal Code" [(ngModel)] = "selectEmployee.postalCode"> 
+          <br />
+          <label>Country</label>
+          <input pInputText id ="input-countryName" formControlName="country" placeholder="Enter Country" [(ngModel)] = "selectEmployee.country"> 
+          <br />
+          <label>Home Phone</label>
+          <input pInputText id ="input-homePhone" formControlName="homePhone" placeholder="Enter Phone No." [(ngModel)] = "selectEmployee.homePhone"> 
+          <br />
+          <label>Extension</label>
+          <input pInputText id ="input-extension" formControlName="extension" placeholder="Enter Extension" [(ngModel)] = "selectEmployee.extension"> 
+          <br />
+          <label>Notes</label>
+          <textarea pInputTextArea id="input-notes" [rows]=5 placeholder="Enter Notes" style="resize:none" formControlName="notes"[(ngModel)]="selectEmployee.notes"></textarea>
+          <br />
+          <label>ReportsTo</label>
+          <input pInputText id ="input-reportsTo" formControlName="reportsTo" placeholder="Reports To" [(ngModel)] = "selectEmployee.reportsTo"> 
+          <br />
+
+          <button pButton type="button" icon="fa fa-trash" label="Delete" (click)="okDelete()" *ngIf="isDeleteEmployee==true"></button>
+          <button pButton type="button" icon="fa fa-file" label="Save" (click)="saveEmployee()" *ngIf="isDeleteEmployee==false" [disabled]="!employeeForm.valid"></button>
+          <button pButton type="button" icon="fa fa-ban" label="Cancel" (click)="cancelEmployee()"></button>
+     </div>
+  </p-dialog>
+  
+    
+</form>

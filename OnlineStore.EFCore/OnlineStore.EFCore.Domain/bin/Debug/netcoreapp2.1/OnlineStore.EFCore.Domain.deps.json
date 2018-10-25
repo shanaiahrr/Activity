@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "OnlineStore.EFCore.Domain/1.0.0": {
+        "dependencies": {
+          "OnlineStore.EFCore.Domain.Models": "1.0.0"
+        },
+        "runtime": {
+          "OnlineStore.EFCore.Domain.dll": {}
+        }
+      },
+      "OnlineStore.EFCore.Domain.Models/1.0.0": {
+        "runtime": {
+          "OnlineStore.EFCore.Domain.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "OnlineStore.EFCore.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OnlineStore.EFCore.Domain.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<p-dataTable #dt [value]="patientList" [paginator]="true" [rows]="5" [pageLinks]="5" 
+[responsive]="true" [totalRecords]="totalRecords" (onLazyLoad)="paginate($event)" [lazy]="true">
+    <p-header>
+        <div class="addHeader">
+            <button type="button" pButton icon="fa fa-plus" (click)="addPatient()"></button> 
+            &nbsp; Add Patient
+        </div>
+        <div class="searchHeader">
+            <input pInputText type="text" [(ngModel)]="searchPatientLastName" placeholder="Search Patient by Last Name"  />
+            <button pButton type="button" icon="fa fa-search" (click)="searchPatient()"></button>           
+        </div>
+    </p-header>
+    <p-column>
+        <ng-template pTemplate type="body" let-Patient="rowData">
+                <button type="button" pButton icon="fa fa-pencil" (click)="editPatient(Patient)"></button>
+                <button type="button" pButton icon="fa fa-trash" (click)="deletePatient(Patient)"></button>
+        </ng-template>
+    </p-column>
+    <p-column field="patientID" header="Patient ID"></p-column>
+    <p-column field="patientFirstName" header="Patient First Name"></p-column>
+    <p-column field="patientMiddleName" header="Patient Middle Name"></p-column>
+    <p-column field="patientLastName" header="Patient Last Name"></p-column>
+    <p-column field="patientAge" header="Age"></p-column>
+    <p-column field="patientGender" header="Gender"></p-column>
+    <p-column field="maritalStatus" header="Civil Status"></p-column>
+    <p-column field="phone" header="Phone No"></p-column>
+    <p-column field="illness" header="Illness"></p-column>
+    <p-column field="isDischarged" header="isDischarged"></p-column>
+</p-dataTable>
+
+<form [formGroup]="patientForm">
+    <p-dialog header="Patient" [(visible)]="selectPatient" *ngIf="selectPatient">
+       <div class="ui-g-12 ui-md-12 ui-fluid">
+        <label>First Name</label>
+        <input pInputText id ="input-patientFirstName" formControlName="patientFirstName" placeholder="Enter Patient First Name" [(ngModel)] = "selectPatient.patientFirstName"> 
+        <br />
+        <label>Middle Name</label>
+        <input pInputText id ="input-patientMiddleName" formControlName="patientMiddleName" placeholder="Enter Patient Middle Name" [(ngModel)] = "selectPatient.patientMiddleName"> 
+        <br />
+        <label>Last Name</label>
+        <input pInputText id ="input-patientLastName" formControlName="patientLastName" placeholder="Enter Patient Last Name" [(ngModel)] = "selectPatient.patientLastName"> 
+        <br />
+        <label>Age</label>
+        <input pInputText id ="input-patientAge" formControlName="patientAge" placeholder="Enter Age" [(ngModel)] = "selectPatient.patientAge"> 
+        <br />
+        <label>Gender</label><br>
+            <p-radioButton value="Male" label="Male" formControlName="patientGender" 
+                [(ngModel)]="selectPatient.patientGender" inputId="input-patientGender"></p-radioButton><br />
+            <p-radioButton value="Female" label="Female" formControlName="patientGender" 
+                [(ngModel)]="selectPatient.patientGender" inputId="input-patientGender"></p-radioButton><br />
+        <label>Civil Status</label>
+        <input pInputText id ="input-maritalStatus" formControlName="maritalStatus" placeholder="Enter Civil Status" [(ngModel)] = "selectPatient.maritalStatus"> 
+        <br />
+        <label>Phone</label>
+          <input pInputText id ="input-phone" formControlName="phone" placeholder="Enter Phone Number" [(ngModel)] = "selectPatient.phone"> 
+        <br />
+        <label>Illness</label>
+        <input pInputText id ="input-illness" formControlName="illness" placeholder="Enter Illness" [(ngModel)] = "selectPatient.illness"> 
+        <br />
+        <label>Is Discharged?</label><br>
+            <p-radioButton value="True" label="True" formControlName="isDischarged" 
+                [(ngModel)]="selectPatient.isDischarged" inputId="input-isDischarged"></p-radioButton><br />
+            <p-radioButton value="False" label="False" formControlName="isDischarged" 
+                [(ngModel)]="selectPatient.isDischarged" inputId="input-isDischarged"></p-radioButton>
+
+            <button pButton type="button" icon="fa fa-trash" label="Delete" (click)="okDelete()" *ngIf="isDeletePatient==true"></button>
+            <button pButton type="button" icon="fa fa-file" label="Save" (click)="savePatient()" *ngIf="isDeletePatient==false" [disabled]="!patientForm.valid"></button>
+            <button pButton type="button" icon="fa fa-ban" label="Cancel" (click)="cancelPatient()"></button>
+       </div>
+       
+    </p-dialog>
+    
+      
+</form>
